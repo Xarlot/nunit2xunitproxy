@@ -39,16 +39,18 @@ namespace nunit2xunitproxy {
 
             ExtractXUnut();
 
+            string testResult = clo.TestResult ?? "nunit-results.xml";
+
             ProjectConfig config = nunitTestProject.ActiveConfig;
-            return ExecuteTests(config.Assemblies);
+            return ExecuteTests(config.Assemblies, testResult);
         }
 
-        static int ExecuteTests(AssemblyList assemblies) {
+        static int ExecuteTests(AssemblyList assemblies, string testResult) {
             try {
                 List<string> parameters = new List<string>(assemblies.ToArray());
                 parameters.Add("-nunit");
-                parameters.Add("TestResult.xml");
-                //parameters.Add("-nologo");
+                parameters.Add(testResult);
+                parameters.Add("-nologo");
                 parameters.Add("-noappdomain");
                 parameters.Add("-paralleloption");
                 parameters.Add("none");
