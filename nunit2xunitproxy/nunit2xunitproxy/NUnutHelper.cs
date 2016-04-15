@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using NUnit.ConsoleRunner;
+using NUnit.Core;
+using NUnit.Util;
 
 namespace nunit2xunitproxy {
-    using NUnit.ConsoleRunner;
-    using NUnit.Core;
-    using NUnit.Util;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Text;
-    using System.Xml.Linq;
-
-    namespace nunitTester {
-        public static class NunitHelper {
+    public static class NunitHelper {
             public static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
                 try {
                     return Assembly.LoadFrom(Path.Combine(Environment.CurrentDirectory, args.Name + ".dll"));
@@ -59,6 +53,4 @@ namespace nunit2xunitproxy {
                 return relativePath;
             }
         }
-    }
-
 }
